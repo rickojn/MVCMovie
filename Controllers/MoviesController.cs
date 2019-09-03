@@ -15,6 +15,7 @@ namespace MVCMovie.Controllers
         private MovieDBContext db = new MovieDBContext();
 
         // GET: Movies
+        [ValidateInput(false)]
         public ActionResult Index(string movieGenre, string searchString)
         {
             var GenreLst = new List<string>();
@@ -44,6 +45,10 @@ namespace MVCMovie.Controllers
         // GET: Movies/Details/5
         public ActionResult Details(int? id)
         {
+            var headers = Request.Headers;
+            System.Threading.Thread.Sleep(10000);
+            var cookies = Request.Cookies;
+            string correlationID = Request.Cookies["X-Correlation-ID"].Value;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,6 +85,7 @@ namespace MVCMovie.Controllers
         }
 
         // GET: Movies/Edit/5
+        [ValidateInput(false)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -99,6 +105,7 @@ namespace MVCMovie.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "ID,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
         {
             if (ModelState.IsValid)

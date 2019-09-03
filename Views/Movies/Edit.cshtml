@@ -69,12 +69,21 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 
+<div id="titleDiv"></div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
 
 <script src="/Scripts/jquery-3.3.1.js"></script>
+<script>
+
+    var rocal = $('input#Title').val();
+    var rocal2 = jQuery('<div/>').text($('input#Title').val()).html();
+    var rocal3 = document.getElementById('Title').value;
+    $('div#titleDiv').html(rocal2);
+</script>
 <script>
     $(document).ready(function () {
 
@@ -85,7 +94,7 @@
             }
         ];
         //changed
-        alert("hello!");
+        //alert("hello!");
        // $("div#ratingDiv").css({ display: "none" });
         $("#priceInput").change(function () {
             //if ($("#priceInput").val() == 5) {
