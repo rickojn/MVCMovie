@@ -46,6 +46,7 @@ namespace MVCMovie.Controllers
         public ActionResult Details(int? id)
         {
             var headers = Request.Headers;
+            System.Threading.Thread.Sleep(30002);
             System.Threading.Thread.Sleep(40002);
             var cookies = Request.Cookies;
             string correlationID = Request.Cookies["X-Correlation-ID"].Value;
